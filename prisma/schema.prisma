@@ -1,0 +1,18 @@
+// This is your Prisma schema file.
+// Learn more at: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id   String @id @map("_id") @default(auto()) @db.ObjectId // MongoDB automatically generates _id
+  name String  // Example field, replace with your actual fields
+  email String @unique // Example unique field for user email
+  createdAt DateTime @default(now()) // Automatically set timestamp
+}
